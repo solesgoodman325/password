@@ -1,13 +1,12 @@
 // check.js
-window.onload = function() {
-  const referer = document.referrer.toLowerCase(); // 获取referer
-  const passwordPageRegex = /fanbox/; // 匹配含有“fanbox”字样的referer
-  
-  if (passwordPageRegex.test(referer)) {
-    // 如果referer中包含"fanbox"
-    return; // 继续加载password.html页面
+(function () {
+  const referer = document.referrer.toLowerCase();
+
+  if (referer.includes("fanbox")) {
+    // 显示受保护内容
+    document.documentElement.classList.add("allowed");
   } else {
-    // 如果referer中不包含"fanbox"
-    window.location.href = "error.html"; // 重定向到错误页面
+    // 非法来源，直接跳转
+    window.location.replace("error.html");
   }
-};
+})();
